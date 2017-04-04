@@ -1,0 +1,270 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/danvk/source-map-explorer#readme">source-map-explorer (v1.3.3)</a>
+</h1>
+<h4>Analyze and debug space usage through source maps</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.source-map-explorer">module source-map-explorer</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.source-map-explorer.adjustSourcePaths">
+            function <span class="apidocSignatureSpan">source-map-explorer.</span>adjustSourcePaths
+            <span class="apidocSignatureSpan">(sizes, findRoot, finds, replaces)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.source-map-explorer.commonPathPrefix">
+            function <span class="apidocSignatureSpan">source-map-explorer.</span>commonPathPrefix
+            <span class="apidocSignatureSpan">(array)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.source-map-explorer.computeGeneratedFileSizes">
+            function <span class="apidocSignatureSpan">source-map-explorer.</span>computeGeneratedFileSizes
+            <span class="apidocSignatureSpan">(mapConsumer, generatedJs)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.source-map-explorer.loadSourceMap">
+            function <span class="apidocSignatureSpan">source-map-explorer.</span>loadSourceMap
+            <span class="apidocSignatureSpan">(jsFile, mapFile)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.source-map-explorer.mapKeys">
+            function <span class="apidocSignatureSpan">source-map-explorer.</span>mapKeys
+            <span class="apidocSignatureSpan">(obj, fn)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.source-map-explorer" id="apidoc.module.source-map-explorer">module source-map-explorer</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.source-map-explorer.adjustSourcePaths" id="apidoc.element.source-map-explorer.adjustSourcePaths">
+        function <span class="apidocSignatureSpan">source-map-explorer.</span>adjustSourcePaths
+        <span class="apidocSignatureSpan">(sizes, findRoot, finds, replaces)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function adjustSourcePaths(sizes, findRoot, finds, replaces) {
+  if (findRoot) {
+    var prefix = commonPathPrefix(_.keys(sizes));
+    var len = prefix.length;
+    if (len) {
+      sizes = mapKeys(sizes, function(source) { return source.slice(len); })
+    }
+  }
+
+  for (var i = 0; i &lt; finds.length; i++) {
+    var before = new RegExp(finds[i]),
+        after = replaces[i];
+    sizes = mapKeys(sizes, function(source) {
+      return source.replace(before, after);
+    });
+  }
+
+  return sizes;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.source-map-explorer.commonPathPrefix" id="apidoc.element.source-map-explorer.commonPathPrefix">
+        function <span class="apidocSignatureSpan">source-map-explorer.</span>commonPathPrefix
+        <span class="apidocSignatureSpan">(array)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function commonPathPrefix(array){
+  if (array.length == 0) return '';
+  var A= array.concat().sort(),
+  a1= A[0].split(/(\/)/), a2= A[A.length-1].split(/(\/)/), L= a1.length, i= 0;
+  while(i&lt;L &amp;&amp; a1[i] === a2[i]) i++;
+  return a1.slice(0, i).join('');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.source-map-explorer.computeGeneratedFileSizes" id="apidoc.element.source-map-explorer.computeGeneratedFileSizes">
+        function <span class="apidocSignatureSpan">source-map-explorer.</span>computeGeneratedFileSizes
+        <span class="apidocSignatureSpan">(mapConsumer, generatedJs)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function computeGeneratedFileSizes(mapConsumer, generatedJs) {
+  var lines = generatedJs.split('\n');
+  var sourceExtrema = {};  // source -&gt; {min: num, max: num}
+  var numChars = 0;
+  var lastSource = null;
+  for (var line = 1; line &lt;= lines.length; line++) {
+    var lineText = lines[line - 1];
+    var numCols = lineText.length;
+    for (var column = 0; column &lt; numCols; column++, numChars++) {
+      var pos = mapConsumer.originalPositionFor({line:line, column:column});
+      var source = pos.source;
+      if (source == null) {
+        // Often this is from the '// #sourceMap' comment itself.
+        continue;
+      }
+
+      if (source != lastSource) {
+        if (!(source in sourceExtrema)) {
+          sourceExtrema[source] = {min: numChars};
+          lastSource = source;
+        } else {
+          // source-map reports odd positions for bits between files.
+        }
+      } else {
+        sourceExtrema[source].max = numChars;
+      }
+    }
+  }
+  return _.mapObject(sourceExtrema, function(v) {
+    return v.max - v.min + 1
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.source-map-explorer.loadSourceMap" id="apidoc.element.source-map-explorer.loadSourceMap">
+        function <span class="apidocSignatureSpan">source-map-explorer.</span>loadSourceMap
+        <span class="apidocSignatureSpan">(jsFile, mapFile)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function loadSourceMap(jsFile, mapFile) {
+  var jsData = fs.readFileSync(jsFile).toString();
+
+  var mapConsumer;
+  if (mapFile) {
+    var sourcemapData = fs.readFileSync(mapFile).toString();
+    mapConsumer = new sourcemap.SourceMapConsumer(sourcemapData);
+  } else {
+    // Try to read a source map from a 'sourceMappingURL' comment.
+    var converter = convert.fromSource(jsData);
+    if (!converter) {
+      converter = convert.fromMapFileSource(jsData, path.dirname(jsFile));
+    }
+    if (!converter) {
+      console.error('Unable to find a source map.');
+      console.error('See ', SOURCE_MAP_INFO_URL);
+      return null;
+    }
+    mapConsumer = new sourcemap.SourceMapConsumer(converter.toJSON());
+  }
+
+  if (!mapConsumer) {
+    console.error('Unable to find a source map.');
+    console.error('See ', SOURCE_MAP_INFO_URL);
+    return null;
+  }
+
+  return {
+    mapConsumer: mapConsumer,
+    jsData: jsData
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.source-map-explorer.mapKeys" id="apidoc.element.source-map-explorer.mapKeys">
+        function <span class="apidocSignatureSpan">source-map-explorer.</span>mapKeys
+        <span class="apidocSignatureSpan">(obj, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function mapKeys(obj, fn) {
+  return _.object(_.map(obj, function(v, k) { return [fn(k), v]; }));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
