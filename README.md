@@ -1,6 +1,6 @@
 # npmdoc-source-map-explorer
 
-#### api documentation for  [source-map-explorer (v1.3.3)](https://github.com/danvk/source-map-explorer#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-source-map-explorer.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-source-map-explorer) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-source-map-explorer.svg)](https://travis-ci.org/npmdoc/node-npmdoc-source-map-explorer)
+#### basic api documentation for  [source-map-explorer (v1.3.3)](https://github.com/danvk/source-map-explorer#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-source-map-explorer.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-source-map-explorer) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-source-map-explorer.svg)](https://travis-ci.org/npmdoc/node-npmdoc-source-map-explorer)
 
 #### Analyze and debug space usage through source maps
 
